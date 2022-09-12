@@ -1,0 +1,197 @@
+{
+	"info": {
+		"_postman_id": "8cc8738d-7a85-416a-8ec0-d1a494ae6203",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22143734"
+	},
+	"item": [
+		{
+			"name": "Zavrsni rad API skripte",
+			"item": [
+				{
+					"name": "Test 1 - Status 200",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Test broj 1 ,Testiranje odziva API-ija,odgovor mora biti 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://randomuser.me/api/",
+							"protocol": "https",
+							"host": [
+								"randomuser",
+								"me"
+							],
+							"path": [
+								"api",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test 2 - Body da sardži parametre results,info i id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Test broj 2 Body da sardži parametre results,info i id\r",
+									"pm.test(\"Body contains results,info i id\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"results\");\r",
+									"  pm.expect(pm.response.text()).to.include(\"info\");\r",
+									"  pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://randomuser.me/api/",
+							"protocol": "https",
+							"host": [
+								"randomuser",
+								"me"
+							],
+							"path": [
+								"api",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test 3 - Results da sadrzi parametre gender,location,name,email,login,registered,phone,cell,picture",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Test broj 3 Results da sadrzi parametre gender,location,name,email,login,registered,phone,cell,picture\r",
+									"pm.test(\"Results da sadži navede parametre: gender,location,name,email,login,registered,phone,cell,picture\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"picture\");\r",
+									"  pm.expect(pm.response.text()).to.include(\"registered\");\r",
+									"  pm.expect(pm.response.text()).to.include(\"phone\");\r",
+									"  pm.expect(pm.response.text()).to.include(\"login\");\r",
+									"  pm.expect(pm.response.text()).to.include(\"email\");\r",
+									"  pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"  pm.expect(pm.response.text()).to.include(\"gender\");\r",
+									"  pm.expect(pm.response.text()).to.include(\"location\");\r",
+									"  pm.expect(pm.response.text()).to.include(\"cell\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://randomuser.me/api/",
+							"protocol": "https",
+							"host": [
+								"randomuser",
+								"me"
+							],
+							"path": [
+								"api",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test 4 - Vrijeme odziva",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"  //Test broj 4 Vrijeme odziva da bude manje od 200ms\r",
+									"pm.test(\"Vrijeme odziva je manje od 200ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://randomuser.me/api/",
+							"protocol": "https",
+							"host": [
+								"randomuser",
+								"me"
+							],
+							"path": [
+								"api",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test 5 - Da li se API odziv podudara sa parametrima varijabli",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Test broj 5 Da li se API odziv podudara sa parametrima varijabli\r",
+									"pm.test(\"Response property matches environment variable\", function () {\r",
+									"  pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"name\"));\r",
+									"  pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"gender\"));\r",
+									"  pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"location\"));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://randomuser.me/api/",
+							"protocol": "https",
+							"host": [
+								"randomuser",
+								"me"
+							],
+							"path": [
+								"api",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
